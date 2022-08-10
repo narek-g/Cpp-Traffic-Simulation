@@ -55,13 +55,14 @@ void TrafficLight::cycleThroughPhases()
 {
     // FP.2a : Implement the function with an infinite loop that measures the time between two loop cycles 
     // and toggles the current phase of the traffic light between red and green and sends an update method 
-    // to the message queue using move semantics. The cycle duration should be a random value between 4 and 6 seconds. 
+    // to the message queue using move semantics. 
+    // The cycle duration should be a random value between 4 and 6 seconds. 
     // Also, the while-loop should use std::this_thread::sleep_for to wait 1ms between two cycles. 
 
     // Random number gen 
     // std::random_device dev;
     std::mt19937 rng; 
-    std::uniform_int_distribution<uint32_t> dist(4,6);
+    std::uniform_int_distribution<uint32_t> dist(4000,6000);
     float randCycleTime dist(rnd); 
 
     // auto startTime = std::chrono::high_resolution_clock::now();
@@ -78,13 +79,12 @@ void TrafficLight::cycleThroughPhases()
             startTime = std::chrono::system_clock::now();
             // flip traffic light phase
             if(_currentPhase == TrafficLightPhase::green){
-                _currentPhase == TrafficLightPhase::red; 
+                _currentPhase = TrafficLightPhase::red; 
             } else {
-                _currentPhase == TrafficLightPhase::green;
+                _currentPhase = TrafficLightPhase::green;
             }
-        }
-
+            
+        } 
     } // close while(true) 
-
 }
 
