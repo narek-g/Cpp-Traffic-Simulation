@@ -72,14 +72,15 @@ void TrafficLight::cycleThroughPhases()
         std::this_thread::sleep_for(std::chrono::milliseconds(1));
 
         // elapsed time check 
-        auto elapsedTime = std::chrono::system_clock::now() - startTime ;
-        
-        // flip traffic light phase 
+        auto elapsedTime = std::chrono::system_clock::now() - startTime ; 
         if(elapsedTime.count() >= randCycleTime){
+            // update startTime to restart timer 
+            startTime = std::chrono::system_clock::now();
+            // flip traffic light phase
             if(_currentPhase == TrafficLightPhase::green){
                 _currentPhase == TrafficLightPhase::red; 
             } else {
-                _currentPhase == TrafficLightPhase::green
+                _currentPhase == TrafficLightPhase::green;
             }
         }
 
