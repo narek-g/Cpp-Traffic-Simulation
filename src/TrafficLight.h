@@ -19,7 +19,7 @@ template <class T>
 class MessageQueue
 {
 public:
-    void send(T &&message); 
+    void send(T &&msg); 
     T receive(); 
 private:
     std::condition_variable _conditionVariable; 
