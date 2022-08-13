@@ -13,7 +13,7 @@ T MessageQueue<T>::receive()
     // FP.5a : The method receive should use std::unique_lock<std::mutex> and _condition.wait() 
     // to wait for and receive new messages and pull them from the queue using move semantics. 
     // The received object should then be returned by the receive function. 
-    std::lock_guard<std::mutex> ulock(_mutex); 
+    std::unique_lock<std::mutex> ulock(_mutex); 
     _conditionVariable.wait(ulock, [this]{
         return !_queue.empty(); 
     });
@@ -79,11 +79,6 @@ void TrafficLight::cycleThroughPhases()
     // Also, the while-loop should use std::this_thread::sleep_for to wait 1ms between two cycles. 
 
     // Random number gen 
-    // std::random_device dev;
-    // std::mt19937 rnd(dev()); 
-    // std::uniform_int_distribution<int> dist(4000,6000);
-    // int duration dist(rnd); 
-
     std::random_device rndDev;
     std::mt19937 rnd(rndDev());
     std::uniform_int_distribution<int> dist(4000, 6000);
