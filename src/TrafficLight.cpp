@@ -81,8 +81,8 @@ void TrafficLight::cycleThroughPhases()
     // Random number gen 
     std::random_device dev;
     std::mt19937 rnd(dev()); 
-    std::uniform_int_distribution<float> dist(4000,6000);
-    float duration dist(rnd); 
+    std::uniform_int_distribution<int> dist(4000,6000);
+    int duration dist(rnd); 
 
     // std::random_device rd;
     // std::mt19937 gen(rd());
