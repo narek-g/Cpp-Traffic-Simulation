@@ -45,7 +45,7 @@ public:
     TrafficLight(); 
 
     // getters / setters
-    TrafficLightPhase getCurrentPhase()
+    TrafficLightPhase getCurrentPhase();
 
     // typical behaviour methods
     void waitForGreen();
