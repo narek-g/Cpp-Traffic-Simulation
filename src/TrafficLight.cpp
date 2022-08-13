@@ -84,10 +84,10 @@ void TrafficLight::cycleThroughPhases()
     // std::uniform_int_distribution<int> dist(4000,6000);
     // int duration dist(rnd); 
 
-    std::random_device rd;
-    std::mt19937 gen(rd());
+    std::random_device rndDev;
+    std::mt19937 rnd(rndDev());
     std::uniform_int_distribution<int> dist(4000, 6000);
-    int duration = dist(gen);
+    int duration = dist(rnd);
 
     // auto startTime = std::chrono::high_resolution_clock::now();
     auto startTime = std::chrono::system_clock::now();
