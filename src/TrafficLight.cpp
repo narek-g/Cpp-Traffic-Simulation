@@ -79,10 +79,15 @@ void TrafficLight::cycleThroughPhases()
     // Also, the while-loop should use std::this_thread::sleep_for to wait 1ms between two cycles. 
 
     // Random number gen 
-    std::random_device dev;
-    std::mt19937 rnd(dev()); 
-    std::uniform_int_distribution<uint32_t> dist(4000,6000);
-    float randCycleTime dist(rnd); 
+    // std::random_device dev;
+    // std::mt19937 rnd(dev()); 
+    // std::uniform_int_distribution<uint32_t> dist(4000,6000);
+    // float randCycleTime dist(rnd); 
+
+    std::random_device rd;
+    std::mt19937 gen(rd());
+    std::uniform_int_distribution<int> dist(4000, 6000);
+    int duration = dist(gen);
 
     // auto startTime = std::chrono::high_resolution_clock::now();
     auto startTime = std::chrono::system_clock::now();
@@ -93,7 +98,7 @@ void TrafficLight::cycleThroughPhases()
 
         // elapsed time check 
         auto elapsedTime = std::chrono::system_clock::now() - startTime ; 
-        if(elapsedTime.count() >= randCycleTime){
+        if(elapsedTime.count() >= duration){
             // update startTime to restart timer 
             startTime = std::chrono::system_clock::now();
             // flip traffic light phase
