@@ -14,8 +14,12 @@ T MessageQueue<T>::receive()
     // to wait for and receive new messages and pull them from the queue using move semantics. 
     // The received object should then be returned by the receive function. 
     std::lock_guard<std::mutex> ulock(_mutex); 
-    _condition.wait() 
-
+    _condition.wait(ulock, [this]{
+        return !_queue.empty(); 
+    });
+    T message = std::move(_queue.back());
+    _queue.emplace_back(); 
+    return message; 
 }
 
 
